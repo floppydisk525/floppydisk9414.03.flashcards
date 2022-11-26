@@ -9,8 +9,11 @@ namespace Flashcards
     {
         static void Main()
         {
+            Console.WriteLine("hello world from floppy");
+/*             
             DatabaseManager.CheckDatabase();
-            UserCommands.MainMenu();
+            UserCommands.MainMenu();  
+*/
         }
     }
 }
