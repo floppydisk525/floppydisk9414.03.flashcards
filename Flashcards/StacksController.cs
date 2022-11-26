@@ -39,7 +39,7 @@ namespace flashcards
                 Console.WriteLine("\n\nNo Rows Found.\n\n");
             }
             reader.Close();
-
+            TableVisualizationEngine.ShowTable(stacks, "Stacks");
         }
     }
 }

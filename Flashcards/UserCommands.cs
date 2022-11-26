@@ -13,7 +13,7 @@ namespace flashcards
             bool closeApp = false;
             while(closeApp==false)
             {
-                Console.WriteLine("\n\nMAIN MENAU\n\n");
+                Console.WriteLine("\n\nMAIN MENU\n\n");
                 Console.WriteLine("What would you like to do?");
                 Console.WriteLine("Type 0 to close Aplication");
                 Console.WriteLine("Type 1 to manange Flashcards");
