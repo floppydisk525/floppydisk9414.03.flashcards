@@ -1,6 +1,6 @@
 # floppydisk9414.03.flashcards
-csharp academy Flashcards project
- 
+csThis is the https://www.thecsharpacademy.com/project/14 Flashcards project  
+   
  ## Changes to get started!  
  #### Change 1  
  Had to change the framework from .net5.0 to a newer .net version so I chose .net7.0.  
