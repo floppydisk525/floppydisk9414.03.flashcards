@@ -78,7 +78,7 @@ namespace flashcards
                     $@" IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'studySession')
                         CREATE TABLE studySession (
                           Id int IDENTITY(1,1) NOT NULL PRIMARY KEY,
-                          Date DateTime NOT NULL,
+                          DateOfStudy DateTime NOT NULL,
                           NumCorrect int,
                           NumTotal int,
                           StackId int NOT NULL 
