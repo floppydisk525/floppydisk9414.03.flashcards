@@ -12,7 +12,7 @@ namespace flashcards
     {
         public static readonly string connectionString =
             "Server=(localdb)\\MSSQLLocalDB;Initial Catalog=flashcardDb; Integrated Security=true;";
-        internal static void GetStacks()
+        internal static List<Stack> GetStacks()
         {
             using var connection = new SqlConnection(connectionString);
             connection.Open();
@@ -39,7 +39,14 @@ namespace flashcards
                 Console.WriteLine("\n\nNo Rows Found.\n\n");
             }
             reader.Close();
-            TableVisualizationEngine.ShowTable(stacks, "Stacks");
+            TableVisualizationEngine.ShowTable(stacks, "Stacks");   //should consider doing this where called, if that's what you want to do
+
+            return stacks;
+        }
+        
+        internal static void CreateStack()
+        {
+
         }
     }
 }
