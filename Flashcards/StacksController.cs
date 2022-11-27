@@ -46,7 +46,34 @@ namespace flashcards
         
         internal static void CreateStack()
         {
+            Stack stack = new();
+            Console.WriteLine("\n\nPlease Enter a Stack Name\n\n");
+            stack.Name = Console.ReadLine();
 
+            SqlConnection conn = new(connectionString);
+            using (conn)
+            {
+                conn.Open();
+                var tableCmd = conn.CreateCommand();
+                tableCmd.CommandText =
+                    $@"INSERT INTO stack (Name) VALUES ('{stack.Name}')";
+                tableCmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            var stackId = GetStackId();
+
+            Console.WriteLine("\n\nYour flashcards stack was successfully created.\n\n");
+            FlashcardsController.CreateFlashcard(stackId, stack.Name);
+        }
+
+        private static int GetStackId()
+        {
+            SqlConnection conn = new(connectionString);
+            conn.Open();
+            SqlCommand comm = new("SELECT IDENT_CURRENT('stack')", conn);
+            int id = Convert.ToInt32(comm.ExecuteScalar());
+            conn.Close();
+            return id;
         }
     }
 }
