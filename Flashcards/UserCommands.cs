@@ -49,14 +49,15 @@ namespace flashcards
         }
         internal static void StacksMenu()
         {
-            Console.WriteLine("\n\nFLASHCARD STACKS AREA\n");
+            Console.WriteLine("\n\nCurrent Stacks:\n");
             StacksController.GetStacks();
 
             bool closeArea = false;
             while (closeArea == false)
             {
+                Console.WriteLine("\nSTACKS MENU"); 
                 Console.WriteLine("\nWhat would you like to do?");
-                //Console.WriteLine("\nType 0 to Close Application.");
+                Console.WriteLine("\nType 0 to Print Stacks.");
                 Console.WriteLine("Type 1 to Return to Main Menu");
                 Console.WriteLine("Type 2 to Create New Stack");
                 Console.WriteLine("Type 3 to Manage a Stack");
@@ -74,7 +75,7 @@ namespace flashcards
                 switch (command)
                 {
                     case 0:
-                        closeArea = true;
+                        StacksController.GetStacks();
                         break;
                     case 1:
                         closeArea = true;
@@ -100,8 +101,8 @@ namespace flashcards
             while (closeArea == false)
             {
                 Console.WriteLine("\nWhat would you like to do?");
-                Console.WriteLine("\nType 0 to close application.");
-                Console.WriteLine("Type 1 to return to Main Menu");
+                Console.WriteLine("\nType 0 to close Area.");
+                //Console.WriteLine("Type 1 to return to Main Menu");
                 Console.WriteLine("Type 2 to change stack's name");
                 Console.WriteLine("Type 3 to delete stack");
                 Console.WriteLine("Type 4 to add a flashcard");
@@ -124,26 +125,31 @@ namespace flashcards
                         closeArea = true;
                         break;
                     case 1:
-                        MainMenu();
+                        //MainMenu();
                         break;
                     case 2:
-                        //StacksController.UpdateStackName(stackId);
+                        StacksController.UpdateStackName(stackId);
+                        closeArea = true;
                         break;
                     case 3:
-                        //StacksController.DeleteStack(stackId);
+                        StacksController.DeleteStack(stackId);
                         //StacksController.GetStacks();
+                        closeArea = true;
                         break;
                     case 4:
-                        //FlashcardsController.CreateFlashcard(stackId, null);
+                        FlashcardsController.CreateFlashcard(stackId, null);
                         //StacksController.GetStackWithCards(stackId);
+                        closeArea= true;
                         break;
                     case 5:
-                        //FlashcardsController.DeleteFlashcard(stack);
+                        FlashcardsController.DeleteFlashcard(stack);
                         //StacksController.GetStackWithCards(stackId);
+                        closeArea= true;
                         break;
                     case 6:
-                        //FlashcardsController.UpdateFlashcard(stack);
+                        FlashcardsController.UpdateFlashcard(stack);
                         //StacksController.GetStackWithCards(stackId);
+                        closeArea= true;
                         break;
                     default:
                         Console.WriteLine("\nInvalid Command. Please type a number from 0 to 6.\n");
@@ -162,6 +168,32 @@ namespace flashcards
                 idInput = Console.ReadLine();
             }        
             return Int32.Parse(idInput);
+        }
+        internal static string GetStringInput(string message)
+        {
+            Console.WriteLine(message);
+            string name = Console.ReadLine();
+
+            while (string.IsNullOrEmpty(name))
+            {
+                Console.WriteLine("\nInvalid name");
+                name = Console.ReadLine();
+            }
+
+            return name;
+        }
+        internal static string GetBinaryInput(string message)
+        {
+            Console.WriteLine(message);
+            string option = Console.ReadLine();
+
+            while (string.IsNullOrEmpty(option) && !option.Equals("Y") && !option.Equals("N"))
+            {
+                Console.WriteLine("\nInvalid option");
+                option = Console.ReadLine();
+            }
+
+            return option;
         }
     }
 }

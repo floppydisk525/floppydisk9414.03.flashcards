@@ -43,7 +43,7 @@ namespace flashcards
 
             return stacks;
         }
-        
+
         internal static void CreateStack()
         {
             Stack stack = new();
@@ -91,7 +91,7 @@ namespace flashcards
         {
             using var connection = new SqlConnection(connectionString);
             Stack stack = new();
-            
+
             connection.Open();
             var tableCmd = connection.CreateCommand();
             tableCmd.CommandText =
@@ -132,6 +132,42 @@ namespace flashcards
 
             return cards;
         }
+        internal static void UpdateStackName(int stackId)
+        {
+            string name = UserCommands.GetStringInput("Please type new stack name:");
+            SqlConnection conn = new(connectionString);
 
+            using (conn)
+            {
+                conn.Open();
+                var tableCmd = conn.CreateCommand();
+                tableCmd.CommandText =
+                    @$"UPDATE stack 
+                       SET name = ('{name}')
+                       WHERE Id = {stackId}";
+                tableCmd.ExecuteNonQuery();
+                conn.Close();
+            }
+
+            Console.WriteLine("\n\nYour stack name was successfully UPDATED.\n\n");
+            UserCommands.StacksMenu();
+        }
+        internal static void DeleteStack(int stackId)
+        {
+            SqlConnection conn = new(connectionString);
+
+            using (conn)
+            {
+                conn.Open();
+                var tableCmd = conn.CreateCommand();
+                tableCmd.CommandText =
+                    $"DELETE FROM stack WHERE Id = ('{stackId}')";
+                tableCmd.ExecuteNonQuery();
+                conn.Close();
+            }
+
+            Console.WriteLine("\n\nYour flashcards stack was successfully deleted.\n\n");
+            //UserCommands.StacksMenu();
+        }
     }
 }
