@@ -1,4 +1,6 @@
 ﻿using ConsoleTableExt;
+using flashcards.Model;
+using flashcards.Model.DTO;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -22,6 +24,29 @@ namespace flashcards
                 .WithTitle(tableName)
                 .ExportAndWriteLine();
             Console.WriteLine("\n\n");
+        }
+
+        public static void PrepareFlashcardsList(int id, List<FlashcardsWithStack> list)
+        {
+            string stackName = list.FirstOrDefault()?.StackName;
+            string tableName = $"{id} - {stackName}";
+
+            List<FlashcardsWithStackToView> stackToView = new List<FlashcardsWithStackToView>();
+
+            int cardIndex = 1;
+            list.ForEach(x =>
+            {
+                stackToView.Add(new FlashcardsWithStackToView
+                {
+                    Id = cardIndex,
+                    Question = x.Question,
+                    Answer = x.Answer,
+                });
+
+                cardIndex++;
+            });
+
+            ShowTable(stackToView, tableName);
         }
     }
 }

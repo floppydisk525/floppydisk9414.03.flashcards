@@ -75,5 +75,63 @@ namespace flashcards
             conn.Close();
             return id;
         }
+
+        public static void ManageStack()
+        {
+            GetStacks();
+
+            int stackId = UserCommands.GetIntegerInput("\nType the id of the stack you would like to manage.\n");
+
+            List<FlashcardsWithStack> stack = GetStackWithCard(stackId);
+
+            UserCommands.ManageStackMenu(stackId, stack);
+        }
+
+        internal static List<FlashcardsWithStack> GetStackWithCard(int id)       //getting all the flashcards for stacks of id
+        {
+            using var connection = new SqlConnection(connectionString);
+            Stack stack = new();
+            
+            connection.Open();
+            var tableCmd = connection.CreateCommand();
+            tableCmd.CommandText =
+                $@"SELECT f.Id, s.Name as stackname, f.Question, f.Answer
+                FROM flashcard f
+                LEFT JOIN stack s
+                ON s.Id = f.StackId
+                WHERE s.Id={id}";
+            //connection.Close();
+            List<FlashcardsWithStack> cards = new();
+
+            SqlDataReader reader = tableCmd.ExecuteReader();
+            //now connection.close(); ???????
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    cards.Add(
+                        new FlashcardsWithStack
+                        {
+                            Id = reader.GetInt32(0),
+                            StackName = reader.GetString(1),
+                            Question = reader.GetString(2),
+                            Answer = reader.GetString(3)
+                        });
+                }
+            }
+            else
+            {
+                Console.WriteLine("\n\nNo rows found.\n\n");
+            }
+
+            reader.Close();
+
+            Console.WriteLine("\n\n");
+
+            TableVisualizationEngine.PrepareFlashcardsList(id, cards);
+
+            return cards;
+        }
+
     }
 }
