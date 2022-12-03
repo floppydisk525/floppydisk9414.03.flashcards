@@ -204,10 +204,10 @@ namespace flashcards
             while (closeArea == false)
             {
                 Console.WriteLine("\nWhat would you like to do?");
-                Console.WriteLine("\nType 0 to Close Application.");
-                Console.WriteLine("Type 1 to return to Main Menu.");
-                Console.WriteLine("Type 2 to study.");
-                Console.WriteLine("Type 3 to see your study sessions.");
+                //Console.WriteLine("\nType 0 to Close Application.");
+                Console.WriteLine("Type 0 to return to Main Menu.");
+                Console.WriteLine("Type 1 to study.");
+                Console.WriteLine("Type 2 to see your study sessions.");
 
                 string commandInput = Console.ReadLine();
 
@@ -225,13 +225,10 @@ namespace flashcards
                         closeArea = true;
                         break;
                     case 1:
-                        MainMenu();
+                        StudyController.NewStudySession();
                         break;
                     case 2:
-                        //StudyController.NewStudySession();
-                        break;
-                    case 3:
-                        //StudyController.GetStudySessions();
+                        StudyController.GetStudySessions();
                         break;
                     default:
                         Console.WriteLine("\nInvalid Command. Please type a number from 0 to 3.\n");

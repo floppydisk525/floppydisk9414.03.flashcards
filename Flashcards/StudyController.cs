@@ -11,6 +11,13 @@ namespace flashcards
         public static readonly string connectionString =
             "Server=(localdb)\\MSSQLLocalDB;Initial Catalog=flashcardDb; Integrated Security=true;";
 
+        internal static void NewStudySession()
+        {
 
+        }
+        internal static void GetStudySessions()
+        {
+            Console.WriteLine("Not setup yet...  todo...");
+        }
     }
 }
