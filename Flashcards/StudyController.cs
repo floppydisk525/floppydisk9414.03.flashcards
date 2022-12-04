@@ -26,7 +26,7 @@ namespace flashcards
                 tblCmd.CommandText =
                     $@"INSERT INTO studysession (StackId, NumTotal, NumCorrect, DateOfStudy)
                         VALUES ('{studySession.StackId}', '{studySession.NumTotal}', 
-                        '{studySession.NumCorrect}', '{studySession.DateOfStudy}')";
+                        '{studySession.NumCorrect}', '{studySession.DateOfStudy}', '{studySession.StackName}')";
                 tblCmd.ExecuteNonQuery();
                 conn.Close();
             }
@@ -58,6 +58,7 @@ namespace flashcards
                                 NumCorrect= reader.GetInt32(2),
                                 NumTotal= reader.GetInt32(3),
                                 StackId=reader.GetInt32(4),
+                                StackName=reader.GetString(5),
                             });
                     }
                 }
