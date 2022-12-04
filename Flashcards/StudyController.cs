@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -95,6 +96,13 @@ namespace flashcards
             }
 
             TableVisualizationEngine.ShowTable(sessions, "Study Sessions");
+        }
+
+        public static string SafeGetString (this SqlDataReader reader, int colIndex)
+        {
+            if(!reader.IsDBNull(colIndex))
+                return reader.GetString(colIndex);
+            return string.Empty;
         }
     }
 }
