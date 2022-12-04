@@ -85,7 +85,8 @@ namespace flashcards
                             FOREIGN KEY 
                             REFERENCES stack(Id) 
                             ON DELETE CASCADE 
-                            ON UPDATE CASCADE
+                            ON UPDATE CASCADE,
+                          StachName nchar(10) NULL
                          );
                       ";
                 tableCmd.ExecuteNonQuery();
