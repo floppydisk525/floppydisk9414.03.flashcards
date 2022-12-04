@@ -86,7 +86,7 @@ namespace flashcards
                             REFERENCES stack(Id) 
                             ON DELETE CASCADE 
                             ON UPDATE CASCADE,
-                          StachName nchar(10) NULL
+                          StackName nchar(10) NULL
                          );
                       ";
                 tableCmd.ExecuteNonQuery();
