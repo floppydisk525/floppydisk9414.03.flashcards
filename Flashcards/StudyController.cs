@@ -50,16 +50,41 @@ namespace flashcards
                 {
                     while(reader.Read())
                     {
-                        sessions.Add(
+                        if (reader["StackName"].ToString() == "")
+                        {
+                            sessions.Add(
                             new StudySession
                             {
                                 Id = reader.GetInt32(0),
                                 DateOfStudy = reader.GetDateTime(1),
-                                NumCorrect= reader.GetInt32(2),
-                                NumTotal= reader.GetInt32(3),
-                                StackId=reader.GetInt32(4),
-                                StackName=reader.GetString(5),
+                                NumCorrect = reader.GetInt32(2),
+                                NumTotal = reader.GetInt32(3),
+                                StackId = reader.GetInt32(4),                               
                             });
+                        }
+                        else
+                        {
+                            sessions.Add(
+                            new StudySession
+                            {
+                                Id = reader.GetInt32(0),
+                                DateOfStudy = reader.GetDateTime(1),
+                                NumCorrect = reader.GetInt32(2),
+                                NumTotal = reader.GetInt32(3),
+                                StackId = reader.GetInt32(4),
+                                StackName = reader.GetString(5),
+                            });
+                        }
+                        //sessions.Add(
+                        //    new StudySession
+                        //    {
+                        //        Id = reader.GetInt32(0),
+                        //        DateOfStudy = reader.GetDateTime(1),
+                        //        NumCorrect= reader.GetInt32(2),
+                        //        NumTotal= reader.GetInt32(3),
+                        //        StackId=reader.GetInt32(4),
+                        //        StackName=reader.GetString(5),
+                        //    });
                     }
                 }
                 else
