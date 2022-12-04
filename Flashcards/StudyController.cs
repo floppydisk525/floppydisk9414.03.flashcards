@@ -51,6 +51,8 @@ namespace flashcards
                 {
                     while(reader.Read())
                     {
+                        var stackNameCheck = reader.SafeGetString(5);
+                        
                         if (reader["StackName"].ToString() == "")
                         {
                             sessions.Add(
@@ -73,7 +75,8 @@ namespace flashcards
                                 NumCorrect = reader.GetInt32(2),
                                 NumTotal = reader.GetInt32(3),
                                 StackId = reader.GetInt32(4),
-                                StackName = reader.GetString(5),
+                                //StackName = reader.GetString(5),
+                                StackName = reader.SafeGetString(5),
                             });
                         }
                         //sessions.Add(

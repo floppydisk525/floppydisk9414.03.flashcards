@@ -20,3 +20,8 @@ csThis is the https://www.thecsharpacademy.com/project/14 Flashcards project
  #nullable enable
  https://stackoverflow.com/questions/55492214/the-annotation-for-nullable-reference-types-should-only-be-used-in-code-within-a  
   
+ I had serious issues reading in a null StackName in the StudySession table.  I found a fix in this article:  
+ https://stackoverflow.com/questions/1772025/sql-data-reader-handling-null-column-values  
+   
+ But..  struggling implementing the fix because I don't know how to add the method to the SqlDataReader type.  
+
