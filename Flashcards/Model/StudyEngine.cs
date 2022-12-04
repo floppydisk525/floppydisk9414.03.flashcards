@@ -9,7 +9,7 @@ namespace flashcards.Model
 {
     internal class StudyEngine
     {
-        internal static StudySssion CreateStudySession()
+        internal static StudySession CreateStudySession()
         {
             List<Stack> stacks = StacksController.GetStacks();
             var id = UserCommands.GetIntegerInput("Enter the ID of the stack would you like to study?");
@@ -43,7 +43,7 @@ namespace flashcards.Model
             Console.WriteLine($"Score: {score}");
             incorrectAnswers.ForEach(x => Console.Write($"{x}, "));
 
-            StudySssion studySession = new StudySssion
+            StudySession studySession = new StudySession
             {
                 StackName = stack.FirstOrDefault().StackName,
                 NumTotal = stack.Count,                

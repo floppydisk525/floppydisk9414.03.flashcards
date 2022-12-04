@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace flashcards.Model
 {
-    internal class StudySssion
+    internal class StudySession
     {
         public int Id { get; set; }
         public DateTime DateOfStudy { get; set; }
