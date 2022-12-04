@@ -45,12 +45,13 @@ namespace flashcards.Model
 
             StudySession studySession = new StudySession
             {
+                StackId = id,
                 StackName = stack.FirstOrDefault().StackName,
                 NumTotal = stack.Count,                
                 NumCorrect = score,
             };
 
-            Console.WriteLine($"\nYour result: {studySession.NumCorrect}%");
+            Console.WriteLine($"\nYour result: {studySession.NumCorrect}");
             Console.WriteLine($"\nIncorrect answers:");
             incorrectAnswers.ForEach(x => Console.Write($"{x}, "));
 

@@ -16,6 +16,7 @@ namespace flashcards
         internal static void NewStudySession()
         {
             var studySession = StudyEngine.CreateStudySession();
+            studySession.DateOfStudy = DateTime.Now;
 
             SqlConnection conn = new(connectionString);
             using(conn)
@@ -23,8 +24,9 @@ namespace flashcards
                 conn.Open();
                 var tblCmd = conn.CreateCommand();
                 tblCmd.CommandText =
-                    $@"INSERT INTO studysession (StackId, NumTotal, NumCorrect)
-                        VALUES ('{studySession.StackId}', '{studySession.NumTotal}', '{studySession.NumCorrect}')";
+                    $@"INSERT INTO studysession (StackId, NumTotal, NumCorrect, DateOfStudy)
+                        VALUES ('{studySession.StackId}', '{studySession.NumTotal}', 
+                        '{studySession.NumCorrect}', '{studySession.DateOfStudy}')";
                 tblCmd.ExecuteNonQuery();
                 conn.Close();
             }

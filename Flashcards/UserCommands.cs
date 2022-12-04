@@ -39,7 +39,7 @@ namespace flashcards
                         StacksMenu();
                         break;
                     case 2:
-                        //StudyMenu();
+                        StudyMenu();
                         break;
                     default:
                         Console.WriteLine("\nInvalid Entry, Please type a number between 0 and 2. \n");
