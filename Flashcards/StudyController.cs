@@ -59,7 +59,7 @@ namespace flashcards
                                 NumCorrect = reader.GetInt32(2),
                                 NumTotal = reader.GetInt32(3),
                                 StackId = reader.GetInt32(4),
-                                StackName = reader.SafeGetString(5),
+                                StackName = reader.SafeGetString(5),    //note this is an extension METHOD!  easy to miss!
                             });
                     }
                 }
@@ -73,7 +73,7 @@ namespace flashcards
             TableVisualizationEngine.ShowTable(sessions, "Study Sessions");
         }        
     }
-    public static class SqlReaderExtensions
+    public static class SqlReaderExtensions    //extension method of the sqlreader - extensions  
     {
         public static string SafeGetString(this SqlDataReader reader, int colIndex)
         {
