@@ -33,7 +33,42 @@ namespace flashcards
         }
         internal static void GetStudySessions()
         {
-            Console.WriteLine("Not setup yet...  todo...");
+            List<StudySession> sessions = new List<StudySession>();
+
+            SqlConnection conn = new(connectionString);
+            using(conn)
+            {
+                conn.Open();
+                var tableCmd = conn.CreateCommand();
+                tableCmd.CommandText =
+                    $@"SELECT * FROM studysession";
+                tableCmd.ExecuteNonQuery();
+
+                SqlDataReader reader = tableCmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while(reader.Read())
+                    {
+                        sessions.Add(
+                            new StudySession
+                            {
+                                Id = reader.GetInt32(0),
+                                DateOfStudy = reader.GetDateTime(1),
+                                NumCorrect= reader.GetInt32(2),
+                                NumTotal= reader.GetInt32(3),
+                                StackId=reader.GetInt32(4),
+                            });
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("\n\nNo rows found.\n");
+                }
+                conn.Close();
+            }
+
+            TableVisualizationEngine.ShowTable(sessions, "Study Sessions");
         }
     }
 }

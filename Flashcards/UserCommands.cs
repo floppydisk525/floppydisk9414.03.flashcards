@@ -231,7 +231,7 @@ namespace flashcards
                         StudyController.GetStudySessions();
                         break;
                     default:
-                        Console.WriteLine("\nInvalid Command. Please type a number from 0 to 3.\n");
+                        Console.WriteLine("\nInvalid Command. Please type a number from 0 to 2.\n");
                         break;
                 }
             }
