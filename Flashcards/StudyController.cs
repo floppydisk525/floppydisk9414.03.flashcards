@@ -24,7 +24,7 @@ namespace flashcards
                 conn.Open();
                 var tblCmd = conn.CreateCommand();
                 tblCmd.CommandText =
-                    $@"INSERT INTO studysession (StackId, NumTotal, NumCorrect, DateOfStudy)
+                    $@"INSERT INTO studysession (StackId, NumTotal, NumCorrect, DateOfStudy, StackName)
                         VALUES ('{studySession.StackId}', '{studySession.NumTotal}', 
                         '{studySession.NumCorrect}', '{studySession.DateOfStudy}', '{studySession.StackName}')";
                 tblCmd.ExecuteNonQuery();
