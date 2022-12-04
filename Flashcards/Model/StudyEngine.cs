@@ -9,7 +9,7 @@ namespace flashcards.Model
 {
     internal class StudyEngine
     {
-        internal StudySssion CreateStudySession()
+        internal static StudySssion CreateStudySession()
         {
             List<Stack> stacks = StacksController.GetStacks();
             var id = UserCommands.GetIntegerInput("Enter the ID of the stack would you like to study?");

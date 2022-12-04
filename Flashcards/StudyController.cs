@@ -1,4 +1,6 @@
-﻿using System;
+﻿using flashcards.Model;
+using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +15,19 @@ namespace flashcards
 
         internal static void NewStudySession()
         {
+            var studySession = StudyEngine.CreateStudySession();
 
+            SqlConnection conn = new(connectionString);
+            using(conn)
+            {
+                conn.Open();
+                var tblCmd = conn.CreateCommand();
+                tblCmd.CommandText =
+                    $@"INSERT INTO studysession (StackId, NumTotal, NumCorrect)
+                        VALUES ('{studySession.StackId}', '{studySession.NumTotal}', '{studySession.NumCorrect}')";
+                tblCmd.ExecuteNonQuery();
+                conn.Close();
+            }
         }
         internal static void GetStudySessions()
         {
