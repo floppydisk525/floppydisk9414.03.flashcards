@@ -2,8 +2,7 @@
   "profiles": {
     "flashcards": {
       "commandName": "Project",
-      //"workingDirectory": "C:\\Tutorials\\flashcards"
-      "workingDirectory": "C:\\Users\\mjohnse1\\OneDrive - JNJ\\Documents\\Temp\\MJ_Items\\Engineering\\net\\CSharpAcademy\\floppydisk9414.03.flashcards\\Flashcards\\bin"
+      "workingDirectory": "C:\\Users\\mjohnse1\\OneDrive - JNJ\\Documents\\Temp\\MJ_Items\\Engineering\\net\\CSharpAcademy\\P14 Flahscards\\floppydisk9414.03.flashcards\\Flashcards\\bin"
     }
   }
 }
